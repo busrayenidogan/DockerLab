@@ -1,0 +1,11 @@
+Step1	: touch Dockerfile
+
+Step2	: nano Dockerfile 
+
+Step3	: into the Dockerfile :
+
+Step4	: sudo docker build -t ereborlugimli/nginx .
+
+Step5	: sudo docker run -p 8080:80 ereborlugimli/nginx
+
+Step6	: localhost:8080
