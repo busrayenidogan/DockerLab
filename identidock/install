@@ -1,0 +1,38 @@
+Step1	: mkdir identidock
+
+Step2	: touch identidock.py
+
+Step3	: into the indetidock.py :
+
+from flask import Flask 
+
+app=Flask(__name__) //object oluştur
+
+@app.route('/') //route URL ile ilişkili.URL isteği geldiği zaman hello world f$
+
+def hello_world():
+        return 'Hello World !\n'
+
+if __name__ = '__main__':
+        app.run(debug=True,host='0.0.0.0') //tüm interfaceler ile bağlantılı.Hangi konteynıra ihtiyacımız oldugunda hostdan yada diğer konteynırlardan erişebilicez.
+
+Step4	: touch Dockerfile
+
+Step5	: into the Dockerfile : 
+
+FROM python:3.4
+
+MAINTAINER pip install Flask==0.10.1
+
+WORKDIR app/
+COPY app /app
+
+CMD ["python","identidock.py"] //Dockerfile python resmi imagenı kullanır.
+
+Step6	: sudo docker build -t identidock .
+
+Step7	: sudo docker run -d -p 5000:5000 identidock
+
+Step8	: curl localhost:5000
+Output	: Hello World!
+
