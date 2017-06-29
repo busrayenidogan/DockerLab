@@ -1,0 +1,33 @@
+How to create apache2 docker image ?
+
+Step1	: touch Dockerfile
+
+Step2	: nano Dockerfile
+
+Step3	: into the Dockerfile :
+
+FROM ubuntu:16.10
+
+MAINTAINER Büşra Yenidoğan Version :0.1
+
+RUN apt-get update && apt-get install -y apache2 && apt-get clean && rm -rf /va$
+
+ENV APACHE_USER ereborlugimli
+ENV APACHE_GROUP ereborlugimli
+ENV APACHE_LOG_DIR /var/log/apache2
+
+EXPOSE 80
+
+CMD ["/usr/sbin/apache2","-D","FOREGROUND"]
+
+Step4	: sudo docker build -t ereborlugimli/myapache2 .
+
+Step5	: sudo docker images
+
+Step6	: sudo docker push ereborlugimli/myapache2 
+
+Step7	: sudo docker run -ti -p 8080:80 ereborlugimli/myapache2 /bin/bash
+
+Step8	: service apache2 start
+
+Step9	: ifconfig
