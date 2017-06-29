@@ -1,0 +1,34 @@
+Step1	: touch Dockerfile
+
+Step2	: nano Dockerfile
+
+Step3	: into the Dockerfile :
+
+FROM ereborlugimli/myapache2
+
+MAINTAINER Büşra Yenidoğan Versiyon: 0.1
+
+RUN apt-get update && apt-get install -y php7.0 php7.0-mysql libapache2-mod-php$
+
+#Enable apache mods.
+
+RUN a2enmod php7.0
+RUN a2enmod rewrite
+
+#Updare the PHP .ini file, enable <? ?> tags and quieten logging.
+
+RUN sed -i "s/short_open_tag = Off/short_open_tag = On/" /etc/php/7.0/apache2/p$
+RUN sed -i "s/error_reporting = .*$/error_reporting = E_ERROR | E_WARNING | E_P$
+
+#Copy this repo into place.
+ADD www /var/www/site
+
+
+Step4	: sudo docker build -t mysite .
+
+Step5	: sudo docker run -p 8080:80 -d mysite
+
+Step6	: intot the Browser :
+
+localhost:8080
+
